@@ -1,0 +1,26 @@
+{% extends "swapi_collect/collection_base.html" %} {% block collection_content%}
+<div class="mt-1">
+  <table class="table">
+    <thead>
+      <tr>
+        {% for header in data_headers %}
+        <th scope="col">{{ header }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in data %}
+      <tr>
+        {% for entry in row %}
+        <td>{{ entry }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% if more_url %}
+<a class="btn btn-secondary" href="{{ more_url }}" role="button"
+  >Load more...</a
+>
+{% endif %} {% endblock collection_content %}

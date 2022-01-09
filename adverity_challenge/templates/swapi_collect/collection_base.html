@@ -1,0 +1,15 @@
+{% extends "swapi_collect/base.html" %} {% block content %}
+<b>Collection ID: </b> {{ collection.id }}<br />
+<b>File Name: </b> {{ collection.filename }}<br />
+<b>Generation Time: </b> {{ collection.generation_time }}s<br />
+<b>Created: </b> {{ collection.created_at }}<br />
+
+<ul class="nav nav-pills mt-5">
+  {% for item in menu_items %}
+    <li class="nav-item">
+      <a class="nav-link {% if item.is_active %} active {% endif %}" href="{{ item.url }}">{{ item.name }}</a>
+    </li>
+  {% endfor %}
+</ul>
+{% block collection_content %}{% endblock collection_content %}
+{% endblock content %}

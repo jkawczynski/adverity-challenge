@@ -1,0 +1,39 @@
+{% extends "swapi_collect/collection_base.html" %} {% block collection_content %}
+<form class="mt-2" method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="countColumns">Select Columns</label>
+    <select multiple class="form-control" name="columns" id="countColumns">
+      {% for column in columns %}
+        <option {% if column.selected %} selected {% endif %}>
+          {{ column.name }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary mt-2">Submit</button>
+</form>
+
+{% if data %}
+<div class="mt-3">
+  <table class="table">
+    <thead>
+      <tr>
+        {% for header in data_headers %}
+        <th scope="col">{{ header }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in data %}
+      <tr>
+        {% for entry in row %}
+        <td>{{ entry }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+{% endblock collection_content %}
